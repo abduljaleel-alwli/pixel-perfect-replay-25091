@@ -122,8 +122,8 @@ function PaintWall({ shared }: { shared: Shared }) {
     const cycle = Math.floor(t);
     const p = THREE.MathUtils.smootherstep(t - cycle, 0.05, 0.9);
     if (cycle !== idx.current) idx.current = cycle;
-    const from = PAINTS[cycle % PAINTS.length];
-    const to = PAINTS[(cycle + 1) % PAINTS.length];
+    const from = PAINTS[cycle % PAINTS.length]!;
+    const to = PAINTS[(cycle + 1) % PAINTS.length]!;
     base.current?.color.set(from);
     coatMat.current?.color.set(to);
     if (coat.current) {
@@ -134,7 +134,7 @@ function PaintWall({ shared }: { shared: Shared }) {
       roller.current.position.y = p * H;
       roller.current.position.x = Math.sin(t * 6) * 0.3;
       roller.current.visible = p > 0.001 && p < 0.999;
-      roller.current.children[0].rotation.x = t * 20;
+      roller.current.children[0]!.rotation.x = t * 20;
     }
   });
   return (
@@ -207,7 +207,7 @@ function TileAssembly({ shared }: { shared: Shared }) {
     g.rotation.x = 0.15 - shared.pointer.y * 0.15;
     g.position.y = 1.9 + Math.sin(state.clock.elapsedTime * shared.motion * 0.7) * 0.06;
     g.children.forEach((m, i) => {
-      const d = tiles[i];
+      const d = tiles[i]!;
       m.position.lerpVectors(d.away, d.home, a);
       m.rotation.set(d.spin.x * (1 - a), d.spin.y * (1 - a), d.spin.z * (1 - a));
     });
