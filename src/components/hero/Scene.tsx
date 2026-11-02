@@ -57,7 +57,7 @@ function Ceiling() {
         <meshStandardMaterial color={PLASTER} roughness={0.95} bumpMap={bump} bumpScale={0.02} />
       </mesh>
       {beams.map((b, i) => (
-        <mesh key={i} position={b.p} castShadow>
+        <mesh key={i} position={b.p}>
           <boxGeometry args={b.s} />
           <meshStandardMaterial color={PLASTER} roughness={0.9} bumpMap={bump} bumpScale={0.02} />
         </mesh>
